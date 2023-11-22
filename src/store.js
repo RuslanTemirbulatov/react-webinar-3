@@ -72,7 +72,7 @@ class Store {
       list: this.state.list.map((item) => {
         if (item.code === code) {
           item.selected = !item.selected;
-          item.counter = item.counter >= 1 ? item.counter + 1 : 1
+          item.selected && (item.counter = item.counter >= 1 ? item.counter + 1 : 1)
         } else {
           item.selected = false;
         }
