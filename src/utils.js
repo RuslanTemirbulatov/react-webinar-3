@@ -50,3 +50,18 @@ export const generateCode1 = (function (start = 0) {
 export function generateCode2() {
   return generateCode2.value ? ++generateCode2.value : generateCode2.value = 1;
 }
+
+export const pluralize = (one, few, many, count) => {
+  const lastTwoDigits = count % 100;
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+    return many;
+  }
+  const lastDigit = count % 10;
+  if (lastDigit === 1) {
+    return one;
+  } else if (lastDigit >= 2 && lastDigit <= 4) {
+    return few;
+  } else {
+    return many;
+  }
+};

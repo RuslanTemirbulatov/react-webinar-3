@@ -1,0 +1,32 @@
+.Cart {
+  background-color: #fff;
+  width: 906px;
+  min-height: 407px;
+  border-radius: 7px;
+}
+
+.Cart-header {
+  border-radius: 7px;
+  background-color: #F5F5F5;
+  padding: 0 32px 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Cart-item {
+  border-bottom: 1px dashed #ccc;
+}
+
+.Cart-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px 120px 89px 0
+}
+
+.Cart-footer__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
