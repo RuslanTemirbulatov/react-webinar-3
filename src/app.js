@@ -3,8 +3,8 @@ import List from "./components/list";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import CartInfo from "./components/cartInfo";
-import Cart from "./components/Cart";
-import Modal from "./components/Modal";
+import Cart from "./components/cart";
+import Modal from "./components/modal";
 import Item from "./components/item";
 
 /**
