@@ -9,7 +9,7 @@ const CartInfo = ({cartOpen, fullPriceCart, countCart}) => {
   return (
     <div className="CartInfo">
       <h4>В корзине:</h4>
-      {countCart !== 0 ? <h3>{`${countCart} ${pluralize('товар', 'товара', 'товаров', countCart)} / ${fullPriceCart}`} &#8381;</h3>
+      {countCart !== 0 ? <h3>{`${countCart} ${pluralize('товар', 'товара', 'товаров', countCart)} / ${fullPriceCart.toLocaleString('ru-RU')}`} &#8381;</h3>
       : <h3>пусто</h3>}
       <Controls cartOpen={cartOpen} />
     </div>

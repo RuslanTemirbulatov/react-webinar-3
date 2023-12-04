@@ -45,17 +45,23 @@ class Store {
    * @param price
    */
   addItemCart(code, title, price) {
-    const findItem = this.state.cartList.find((item) => item.code === code)
+    const findItem = this.state.cartList.find((item) => item.code === code);
     if (findItem) {
-      findItem.count += 1
+      const updatedCartList = this.state.cartList.map((item) =>
+        item.code === code ? { ...item, count: item.count + 1 } : item
+      );
+      this.setState({
+        ...this.state,
+        cartList: updatedCartList,
+      });
     } else {
       this.setState({
         ...this.state,
-        cartList: [...this.state.cartList, { code: code, title: title, price: price, count: 1 }],
-      })
+        cartList: [...this.state.cartList, { code, title, price, count: 1 }],
+      });
     }
-    this.setFullPriceAndCountCart()
-  };
+    this.setFullPriceAndCountCart();
+  }
 
   /**
    * Удаление продукта из корзины

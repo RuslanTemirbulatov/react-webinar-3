@@ -2,19 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import Item from "../item";
 import "./style.css";
+import ItemCart from "../item-cart";
 
-function List({ list, onAddItemCart }) {
+function List({ list, onActionItem, componentType }) {
   return (
     <div className="List">
       {list.map((item) => (
         <div key={item.code} className="List-item">
-          <Item
-            item={item}
-            buttonText={"Добавить"}
-            onItemAction={onAddItemCart}
-          />
+          {componentType === "itemCart" ? (
+            <ItemCart item={item} onDeleteItem={onActionItem} />
+          ) : (
+            <Item item={item} onAddItemCart={onActionItem} />
+          )}
         </div>
-      ))}
+      )) 
+      }
     </div>
   );
 }
@@ -25,13 +27,12 @@ List.propTypes = {
       code: PropTypes.number,
     })
   ).isRequired,
-  onDeleteItem: PropTypes.func,
-  onSelectItem: PropTypes.func,
+  onActionItem: PropTypes.func,
+  componentType: PropTypes.string
 };
 
 List.defaultProps = {
-  onAddItemCart: () => {},
-  onSelectItem: () => {},
+  onActionItem: () => {},
 };
 
 export default React.memo(List);

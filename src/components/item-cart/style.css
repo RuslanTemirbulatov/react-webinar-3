@@ -1,0 +1,37 @@
+.ItemCart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  transition: background-color 1s;
+}
+
+.ItemCart-code {
+  padding: 20px 10px 20px 20px;
+}
+
+.ItemCart-title {
+  width: 100%;
+  padding: 20px 10px;
+}
+
+.ItemCart-price {
+  margin-right: 24px;
+  white-space: nowrap;
+  
+}
+.ItemCart-count {
+  margin-left: 62px;
+  margin-right: 24px;
+}
+.ItemCart-count__h2 {
+  font-size: 18px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.ItemCart-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 20px 10px;
+}

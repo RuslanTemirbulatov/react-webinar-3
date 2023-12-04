@@ -1,36 +1,24 @@
 import React from "react";
 import "./style.css";
-import Item from "../item";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import List from "../list";
 
-const Cart = ({
-  cartList,
-  cartOpen,
-  deleteCartItem,
-  fullPriceCart,
-  activeModal
-}) => {
+const Cart = ({ cartList, cartOpen, deleteCartItem, fullPriceCart }) => {
   return (
     <div className="Cart">
       <div className="Cart-header">
         <h1>Корзина</h1>
         <button onClick={cartOpen}>Закрыть</button>
       </div>
-      {cartList.map((item) => (
-        <div key={item.code} className="Cart-item">
-          <Item
-            buttonText={'Удалить'}
-            item={item}
-            onItemAction={deleteCartItem}
-            activeModal={activeModal}
-          />
-        </div>
-      ))}
-
+      <List
+        list={cartList}
+        onActionItem={deleteCartItem}
+        componentType="itemCart"
+      />
       {cartList.length > 0 ? (
         <div className="Cart-footer">
           <h3>Итого</h3>
-          <h2>{fullPriceCart} &#8381;</h2>
+          <h2>{fullPriceCart.toLocaleString("ru-RU")} &#8381;</h2>
         </div>
       ) : (
         <div className="Cart-footer__empty">
@@ -42,11 +30,14 @@ const Cart = ({
 };
 
 Cart.propTypes = {
-  cartList: PropTypes.arrayOf(PropTypes.shape({
-    fullPriceCart: PropTypes.number,
-  })).isRequired,
+  cartList: PropTypes.arrayOf(
+    PropTypes.shape({
+      fullPriceCart: PropTypes.number,
+    })
+  ).isRequired,
   deleteCartItem: PropTypes.func,
-  cartOpen: PropTypes.func
+  cartOpen: PropTypes.func,
+  fullPriceCart: PropTypes.number
 };
 
 Cart.defaultProps = {

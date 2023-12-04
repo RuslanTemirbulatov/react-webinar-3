@@ -5,6 +5,7 @@ import PageLayout from "./components/page-layout";
 import CartInfo from "./components/cartInfo";
 import Cart from "./components/Cart";
 import Modal from "./components/Modal";
+import Item from "./components/item";
 
 /**
  * Приложение
@@ -22,7 +23,7 @@ function App({ store }) {
       (code, title, price) => {
         store.addItemCart(code, title, price);
       },
-      [store, store.getState().cartList]
+      [store]
     ),
     onClickOpenCart: useCallback(() => {
       store.clickOpenCart();
@@ -44,7 +45,7 @@ function App({ store }) {
         fullPriceCart={fullPriceCart}
         countCart={countCart}
       />
-      <List list={list} onAddItemCart={callbacks.onAddItemCart} />
+      <List list={list} onActionItem={callbacks.onAddItemCart} />
       <Modal active={activeModal} setActive={callbacks.onClickOpenCart}>
         <Cart
           cartList={cartList}

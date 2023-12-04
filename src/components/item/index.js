@@ -4,9 +4,9 @@ import "./style.css";
 
 function Item(props) {
   const callbacks = {
-    onAddCartOrOnDeleteCart: (e) => {
+    onAddItemCart: (e) => {
       e.stopPropagation();
-      props.onItemAction(props.item.code, props.item.title, props.item.price);
+      props.onAddItemCart(props.item.code, props.item.title, props.item.price);
     },
   };
 
@@ -15,18 +15,11 @@ function Item(props) {
       <div className="Item-code">{props.item.code}</div>
       <div className="Item-title">{props.item.title}</div>
       <div className="Item-price">
-        <p>{props.item.price} ₽</p>
+        <p>{props.item.price.toLocaleString('ru-RU')} ₽</p>
       </div>
-      {props.activeModal ? (
-        <div className="Item-count">
-          <h2 className="Item-count__h2">{props.item.count} шт.</h2>
-        </div>
-      ) : (
-        ""
-      )}
       <div className="Item-actions">
-        <button onClick={callbacks.onAddCartOrOnDeleteCart}>
-          {props.buttonText}
+        <button onClick={callbacks.onAddItemCart}>
+          Добавить
         </button>
       </div>
     </div>
