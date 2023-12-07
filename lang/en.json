@@ -1,0 +1,21 @@
+{
+    "add": "Add",
+    "main": "Home",
+    "inTheBasket": "In the basket",
+    "openCart": "Basket",
+    "empty": "Empty",
+    "close": "Close",
+    "cart": "Basket",
+    "delete": "Delete",
+    "product": "product",
+    "products1": "products",
+    "products2": "products",
+    "category": "Category",
+    "country": "Country",
+    "edition": "Edition",
+    "price": "Price",
+    "pieces": "pcs",
+    "total": "Total",
+    "shop": "Shop"
+
+  }

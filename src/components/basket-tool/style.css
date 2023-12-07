@@ -1,0 +1,23 @@
+/* Контрол с общими действиями */
+.BasketTool {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.BasketTool-link {
+  text-decoration: none;
+  color: #0087E9;
+  padding-bottom: 0.2px;
+  border-bottom: solid 1px;
+}
+
+.BasketTool-total {
+  font-weight: bold;
+  margin: 0 20px;
+}
+
+.BasketTool-cart-controls button {
+  width: 80px;
+}

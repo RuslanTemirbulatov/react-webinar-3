@@ -1,0 +1,15 @@
+.container {
+    margin: 20px 40px 0;
+}
+
+.page-element p {
+    font-size: 18px;
+}
+
+.page-element span {
+    font-weight: 700;
+}
+
+.page-element h2 {
+    font-size: 24px;
+}
