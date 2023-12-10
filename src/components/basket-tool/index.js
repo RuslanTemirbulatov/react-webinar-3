@@ -6,7 +6,7 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { useLanguage } from '../../store/language-context';
 
-function BasketTool({ sum, amount, onOpen }) {
+function BasketTool({ sum, amount, onOpen, onPageChange }) {
   const { language } = useLanguage();
   const translations = require(`../../../lang/${language}.json`);
   const cn = bem("BasketTool");
@@ -14,7 +14,7 @@ function BasketTool({ sum, amount, onOpen }) {
   return (
     <div className={cn()}>
       <div className={cn("home")}>
-        <Link to="/" className={cn("link")}>
+        <Link to="/" onClick={() => onPageChange(1)} className={cn("link")} >
         {translations.main}
         </Link>
       </div>

@@ -86,6 +86,7 @@ function Main() {
       <Head title={location.pathname === '/' ? `${translations.shop}` : select.itemPage.title} />
       <BasketTool
         onOpen={callbacks.openModalBasket}
+        onPageChange={callbacks.handlePageChange}
         amount={select.amount}
         sum={select.sum}
       />
