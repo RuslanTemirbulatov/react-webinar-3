@@ -7,7 +7,13 @@ import List from "../../components/list";
 import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
 import Pagination from "../../components/pagination";
-import { Routes, Route, useNavigate, useLocation, useParams } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import PageElement from "../../components/page-element";
 import { useLanguage } from "../../store/language-context";
 import Navbar from "../../components/navbar";
@@ -18,8 +24,8 @@ function Main() {
   const idItem = localStorage.getItem("idItem");
   const location = useLocation();
   const { language } = useLanguage();
-  const translations = require(`../../../lang/${language}.json`);
-  const params = useParams()
+  const translations = require(`../../lang/${language ?? "ru"}.json`);
+  const params = useParams();
   const select = useSelector((state) => ({
     list: state.catalog.list,
     currentPage: state.catalog.currentPage,

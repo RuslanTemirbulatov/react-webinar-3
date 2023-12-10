@@ -12,7 +12,7 @@ function Basket() {
 
   const store = useStore();
   const { language } = useLanguage();
-  const translations = require(`../../../lang/${language}.json`);
+  const translations = require(`../../lang/${language ?? 'ru'}.json`);
   const select = useSelector(state => ({
     list: state.basket.list,
     amount: state.basket.amount,

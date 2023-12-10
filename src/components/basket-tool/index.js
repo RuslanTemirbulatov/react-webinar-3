@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { cn as bem } from "@bem-react/classname";
 import { numberFormat, plural } from "../../utils";
 import "./style.css";
-import { useLanguage } from '../../store/language-context';
+import { useLanguage } from "../../store/language-context";
 
 function BasketTool({ sum, amount, onOpen, onPageChange }) {
   const { language } = useLanguage();
-  const translations = require(`../../../lang/${language}.json`);
+  const translations = require(`../../lang/${language ?? "ru"}.json`);
   const cn = bem("BasketTool");
-  
+
   return (
     <div className={cn()}>
       <div className={cn("cart-controls")}>
