@@ -18,6 +18,7 @@ class Basket extends StoreModule {
     let sum = 0;
     // Ищем товар в корзине, чтобы увеличить его количество
     let exist = false;
+
     const list = this.getState().list.map(item => {
       let result = item;
       if (item._id === _id) {

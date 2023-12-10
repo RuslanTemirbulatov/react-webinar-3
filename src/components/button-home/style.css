@@ -1,0 +1,12 @@
+.button-main {
+    padding: 20px;
+    font-size: 18px;
+}
+
+.button-main__link {
+    text-decoration: none;
+    color: #0087E9;
+    padding-bottom: 0.2px;
+    border-bottom: solid 1px;
+    
+  }

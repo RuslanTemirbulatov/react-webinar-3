@@ -16,9 +16,10 @@ class Catalog extends StoreModule {
       idItem: null,
     };
   }
+
   async load() {
     const response = await fetch(
-      `api/v1/articles?limit=10&skip=${this.getState().skipItems}&fields=items(_id, title, price),count`
+      `api/v1/articles?limit=10&skip=${+(localStorage.getItem('currentPage')) * 10 - 10}&fields=items(_id, title, price),count`
     );
     const json = await response.json();
     this.setState(

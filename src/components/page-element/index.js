@@ -1,42 +1,16 @@
 import { memo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./style.css";
-import { useLanguage } from "../../store/language-context";
+import Main from "./main";
 
-const PageElement = ({ item, onAdd, onLoad }) => {
-  const { language } = useLanguage();
+const PageElement = ({ item, onAdd }) => {
   const params = useParams();
-  const translations = require(`../../../lang/${language}.json`);
-
-  const callbacks = {
-    onAdd: (e) => onAdd(item._id),
-    onLoad: (e) => onLoad(item._id),
-  };
-
   useEffect(() => {
     localStorage.setItem("idItem", params.id);
   }, [item]);
 
   return (
-    <div className="page-element container">
-      <p>{item.description}</p>
-      <p>
-        {translations.country}:{" "}
-        <span>
-          {item.madeIn?.title} ({item.madeIn?.code}){" "}
-        </span>
-      </p>
-      <p>
-        {translations.category}: <span>{item.category?.title}</span>
-      </p>
-      <p>
-        {translations.edition}: <span>{item.edition}</span>
-      </p>
-      <h2>
-        {translations.price}: {item.price} ₽
-      </h2>
-      <button onClick={callbacks.onAdd}>{translations.add}</button>
-    </div>
+    <Main item={item} onAdd={onAdd} />
   );
 };
 
