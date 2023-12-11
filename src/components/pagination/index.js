@@ -9,27 +9,25 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
   const visiblePages = () => {
     // Максимальное количество отображаемых страниц
-    let maxVisiblePages = 5;
-    if (currentPage < 3 ) {
-      maxVisiblePages = 3
-    } else if (currentPage >= 54) {
-      maxVisiblePages = 3
-    }else if (currentPage >= 53) {
-      maxVisiblePages = 4
-    }
+
     if (totalPages <= maxVisiblePages) {
       return range(1, totalPages);
     }
 
     let startPage = Math.max(1, currentPage - 1);
     let endPage = Math.min(totalPages, currentPage + 1);
+    let maxVisiblePages = 5;
+    if (currentPage < 3 || currentPage >= totalPages - 1 ) {
+      maxVisiblePages = 3
+    } else if (currentPage >= totalPages - 2 || currentPage === 3) {
+      maxVisiblePages = 4
+    }
 
     if (currentPage <= 3) {
       endPage = maxVisiblePages;
     } else if (currentPage >= totalPages - 2) {
       startPage = totalPages - maxVisiblePages + 1;
     }
-
     return range(startPage, endPage);
   };
   return (
@@ -49,7 +47,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           <button
             onClick={() => onPageChange(page)}
             className={`pagination-button ${
-              currentPage === page ? "active" : ""
+              currentPage === page  ? "active" : ""
             }`}
           >
             {page}

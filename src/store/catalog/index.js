@@ -9,7 +9,7 @@ class Catalog extends StoreModule {
   initState() {
     return {
       list: [],
-      currentPage: 1,
+      currentPage: parseInt(sessionStorage.getItem('currentPage')),
       totalPages: 0,
       skipItems: 0,
       item: {},
@@ -19,7 +19,7 @@ class Catalog extends StoreModule {
 
   async load() {
     const response = await fetch(
-      `api/v1/articles?limit=10&skip=${+(localStorage.getItem('currentPage')) * 10 - 10}&fields=items(_id, title, price),count`
+      `api/v1/articles?limit=10&skip=${(sessionStorage.getItem('currentPage') ? +(sessionStorage.getItem('currentPage')) : 1)  * 10 - 10}&fields=items(_id, title, price),count`
     );
     const json = await response.json();
     this.setState(

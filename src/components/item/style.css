@@ -21,11 +21,10 @@
 }
 .Item-link {
   color: black;
-  transition: 0.3s;
   text-decoration: none;
 }
 .Item-link:hover {
-  border-bottom: solid 1px;
+  text-decoration: underline;
 }
 
 .Item-actions {

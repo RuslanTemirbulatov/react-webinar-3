@@ -25,7 +25,6 @@ function Main() {
   const location = useLocation();
   const { language } = useLanguage();
   const translations = require(`../../lang/${language ?? "ru"}.json`);
-  const params = useParams();
   const select = useSelector((state) => ({
     list: state.catalog.list,
     currentPage: state.catalog.currentPage,
@@ -55,7 +54,7 @@ function Main() {
     handlePageChange: useCallback(
       (page) => {
         store.actions.catalog.getSkipItems(page);
-        localStorage.setItem("currentPage", page);
+        sessionStorage.setItem("currentPage", page);
       },
       [store]
     ),
