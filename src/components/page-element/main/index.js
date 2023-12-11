@@ -3,7 +3,7 @@ import { useLanguage } from "../../../store/language-context";
 
 const index = ({ item, onAdd }) => {
   const { language } = useLanguage();
-  const translations = require(`../../../lang/${language}.json`);
+  const translations = require(`../../../lang/${language ?? "ru"}.json`);
 
   return (
     <div className="page-element container">
