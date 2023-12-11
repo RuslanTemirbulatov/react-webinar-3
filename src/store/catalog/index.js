@@ -9,7 +9,7 @@ class Catalog extends StoreModule {
   initState() {
     return {
       list: [],
-      currentPage: parseInt(sessionStorage.getItem('currentPage')),
+      currentPage: sessionStorage.getItem('currentPage') ? parseInt(sessionStorage.getItem('currentPage')) : 1,
       totalPages: 0,
       skipItems: 0,
       item: {},
