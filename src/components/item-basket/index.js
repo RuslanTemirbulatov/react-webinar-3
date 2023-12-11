@@ -5,6 +5,7 @@ import { cn as bem } from "@bem-react/classname";
 import PropTypes from "prop-types";
 import "./style.css";
 import { useLanguage } from "../../store/language-context";
+import { Link } from "react-router-dom";
 
 function ItemBasket(props) {
   const { language } = useLanguage();
@@ -13,11 +14,23 @@ function ItemBasket(props) {
 
   const callbacks = {
     onRemove: (e) => props.onRemove(props.item._id),
+    onOpenItem: (e) => {
+      props.onOpenItem(props.item._id);
+      props.onClose()
+    },
   };
-
+console.log(props);
   return (
     <div className={cn()}>
-      <div className={cn("title")}>{props.item.title}</div>
+      <div className={cn("title")}>
+        <Link
+          className={cn("link")}
+          to={props.item._id}
+          onClick={callbacks.onOpenItem}
+        >
+          {props.item.title}
+        </Link>
+      </div>
       <div className={cn("right")}>
         <div className={cn("cell")}>{numberFormat(props.item.price)} ₽</div>
         <div className={cn("cell")}>

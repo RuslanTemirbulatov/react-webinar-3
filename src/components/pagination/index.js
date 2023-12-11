@@ -9,7 +9,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
   const visiblePages = () => {
     // Максимальное количество отображаемых страниц
-
     if (totalPages <= maxVisiblePages) {
       return range(1, totalPages);
     }
