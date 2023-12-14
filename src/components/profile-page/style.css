@@ -1,0 +1,21 @@
+.profile-page {
+    margin: 20px 20px;
+}
+
+.profile-page h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+
+.profile-page p {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.profile-page span {
+    font-size: 18px;
+    font-weight: 700;
+}

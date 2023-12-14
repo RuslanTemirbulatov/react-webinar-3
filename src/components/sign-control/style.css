@@ -1,0 +1,15 @@
+.sign-control {
+    height: 41px;
+    display: flex;   
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.sign-control a {
+    color: #0087E9;
+    text-decoration: underline;
+}
+
+.sign-control-button {
+    margin: 10px 20px 10px ;
+}
