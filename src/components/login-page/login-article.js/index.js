@@ -17,8 +17,10 @@ const LoginArticle = () => {
   const navigate = useNavigate()
   const callbacks = {
     postUser: useCallback((login, password) => store.actions.auth.fetchSign(login, password), [store]),
-    deleteProfile: useCallback(() => store.actions.profile.deleteProfile(), [store])
+    getProfile: useCallback(() => store.actions.profile.getProfile(), [store]),
+    deleteProfile: useCallback(() => store.actions.profile.deleteProfile(), [store]),
   }
+  
   const { t } = useTranslate();
 
   useInit(() => {
@@ -28,7 +30,8 @@ const LoginArticle = () => {
   }, [])
 
   const select = useSelector(state => ({
-    profileList: state.profile.profileList
+    profileList: state.profile.profileList,
+    errorMessage: state.auth.errorMessage
   }));
 
   return (
@@ -38,7 +41,7 @@ const LoginArticle = () => {
         <LocaleSelect />
       </Head>
       <Navigation />
-      <LoginPage postUser={callbacks.postUser} />
+      <LoginPage postUser={callbacks.postUser} profileList={select.profileList} getProfile={callbacks.getProfile} errorMessage={select.errorMessage} />
     </PageLayout>
   );
 };

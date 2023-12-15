@@ -10,11 +10,12 @@ class AuthState extends StoreModule {
    */
   initState() {
     return {
+      errorMessage: ''
     };
   }
 
   async fetchSign(login, password) {
-    fetch("/api/v1/users/sign", {
+    await fetch("/api/v1/users/sign", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,13 +33,12 @@ class AuthState extends StoreModule {
       })
       .then((data) => {
         localStorage.setItem("token", data.result.token);
-        console.log("Успешная авторизация", data);
       })
       .catch((error) => {
-        console.error(
-          "Ошибка при отправке запроса на авторизацию",
-          error.message
-        );
+        this.setState({
+          ...this.getState(),
+          errorMessage: error.message,
+        });
       });
   }
 

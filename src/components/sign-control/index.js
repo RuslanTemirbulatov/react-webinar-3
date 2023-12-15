@@ -13,7 +13,7 @@ const SignControl = ({profileList, deleteProfile}) => {
     return (
         <div className='sign-control'>
             {localStorage.getItem('token') ? <>
-            <Link to='/profile'>{profileList.name}</Link>
+            <Link to='/profile'>{profileList?.name}</Link>
             <button className='sign-control-button' onClick={logoutProfile}>Выход</button>
             </>
             :

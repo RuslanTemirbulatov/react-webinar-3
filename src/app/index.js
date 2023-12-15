@@ -29,7 +29,7 @@ function App() {
       <Routes>
         <Route path={''} element={<Main/>}/>
         <Route path={'/articles/:id'} element={<Article/>}/>
-        <Route path={'/login'} element={<LoginArticle />}/>ProfilePage
+        <Route path={'/login'} element={<LoginArticle />}/>
         <Route path={'/profile'} element={<ProfileArticle />}/>
       </Routes>
 

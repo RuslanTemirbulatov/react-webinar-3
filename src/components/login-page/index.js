@@ -6,11 +6,13 @@ const LoginPage = (props) => {
   const [loginValue, setLoginValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
   const navigate = useNavigate()
-  const  postOnSubmit = (e) => {
+  const postOnSubmit = async (e) => {
     e.preventDefault();
-    props.postUser(loginValue, passwordValue)
-    navigate('/')
+    await props.postUser(loginValue, passwordValue)
+    navigate('/profile')
+    props.getProfile()
   }
+  console.log(props.errorMessage);
   return (
     <div className="login-page">
       <form className="login-page-form" onSubmit={postOnSubmit}>
@@ -19,6 +21,7 @@ const LoginPage = (props) => {
         <input className="login-page-input" type="text" id="input1" value={loginValue} onChange={(e) => setLoginValue(e.target.value)} />
         <label htmlFor="input2">Пароль</label>
         <input className="login-page-input" type="text" id="input2" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)} />
+        <p>{props.errorMessage}</p>
         <button className="login-page-button">Войти</button>
       </form>
     </div>
