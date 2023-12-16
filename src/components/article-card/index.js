@@ -1,5 +1,6 @@
 import {memo} from "react";
 import {cn as bem} from '@bem-react/classname';
+import PropTypes from 'prop-types';
 import {numberFormat} from "../../utils";
 import './style.css';
 
