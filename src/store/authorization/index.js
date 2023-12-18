@@ -25,23 +25,30 @@ class AuthState extends StoreModule {
         password: password,
       }),
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Ошибка при авторизации");
+      .then(async (data) => {
+        const res = await data.json()
+        if (!data.ok) {
+          this.setState({
+            ...this.getState(),
+            errorMessage: res.error.data.issues[0].message,
+          });
         }
-        return res.json();
-      })
-      .then((data) => {
-        localStorage.setItem("token", data.result.token);
+        else localStorage.setItem("token", res.result.token);
       })
       .catch((error) => {
         this.setState({
           ...this.getState(),
-          errorMessage: error.message,
+          errorMessage: 'ошибка сервера',
         });
       });
   }
 
+  clearErrorMessage() {
+    this.setState({
+      ...this.getState(),
+      errorMessage: null,
+    });
+  }
 }
 
 export default AuthState;

@@ -11,7 +11,7 @@ function FilterSelect(props) {
   const renderSelectOptions = (category, level = 0) => {
     return (
       <React.Fragment key={category._id}>
-        <option value={category._id}>{`${'-'.repeat(level)} ${category.title}`}</option>
+        <option value={category._id}>{`${' - '.repeat(level)} ${category.title}`}</option>
         {category.subcategories && category.subcategories.map(subcategory => renderSelectOptions(subcategory, level + 1))}
       </React.Fragment>
     );

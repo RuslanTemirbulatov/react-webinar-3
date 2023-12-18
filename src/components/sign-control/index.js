@@ -3,9 +3,8 @@ import './style.css'
 import { Link, useNavigate  } from 'react-router-dom';
 import useTranslate from "../../../src/hooks/use-translate";
 
-const SignControl = ({profileList, deleteProfile}) => {
+const SignControl = ({profileList, deleteProfile, buttonLogin, buttonLogout}) => {
     const navigate = useNavigate()
-    const { t } = useTranslate();
     const logoutProfile = () => {
         deleteProfile();
         localStorage.removeItem('token')
@@ -15,10 +14,10 @@ const SignControl = ({profileList, deleteProfile}) => {
         <div className='sign-control'>
             {localStorage.getItem('token') ? <>
             <Link to='/profile'>{profileList?.name}</Link>
-            <button className='sign-control-button' onClick={logoutProfile}>{t("logout")}</button>
+            <button className='sign-control-button' onClick={logoutProfile}>{buttonLogout}</button>
             </>
             :
-            <Link to='/login'><button className='sign-control-button'>{t("sign")}</button></Link>
+            <Link to='/login'><button className='sign-control-button'>{buttonLogin}</button></Link>
             }
         </div>
     );
