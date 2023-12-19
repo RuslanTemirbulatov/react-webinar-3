@@ -1,19 +1,57 @@
-import React from 'react';
-import './style.css'
-import useTranslate from "../../../src/hooks/use-translate";
+import React, { useCallback } from "react";
+import { memo } from "react";
+import useStore from "../../hooks/use-store";
+import Navigation from "../../containers/navigation";
+import PageLayout from "../../components/page-layout";
+import Head from "../../components/head";
+import LocaleSelect from "../../containers/locale-select";
+import SignControl from "../../components/sign-control";
+import ProfilePage from "../../components/profile-page";
+import useTranslate from "../../hooks/use-translate";
+import useSelector from "../../hooks/use-selector";
+import useInit from "../../hooks/use-init";
+import { useNavigate } from "react-router-dom";
 
+const ProfileArticle = () => {
+  const { t } = useTranslate();
+  const navigate = useNavigate();
+  useInit(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, []);
 
-const ProfilePage = ({profileList, fullUserInfo}) => {
-    const { t } = useTranslate();
+  const callbacks = {
+    deleteProfile: useCallback(
+      () => store.actions.profile.deleteProfile(),
+      [store]
+    ),
+  };
 
-    return (
-        <div className='profile-page'>
-            <h1>{t("profile")}</h1>
-            <p>{t("name")}: <span>{profileList?.name}</span></p>
-            <p>{t("phone")}: <span>{profileList?.phone}</span></p>
-            <p>email: <span>{fullUserInfo?.email}</span></p>
-        </div>
-    );
+  const select = useSelector((state) => ({
+    fullUserInfo: state.profile.fullUserInfo,
+    profileList: state.profile.profileList,
+  }));
+  const store = useStore();
+
+  return (
+    <PageLayout>
+      <SignControl
+        profileList={select.profileList}
+        deleteProfile={callbacks.deleteProfile}
+        buttonLogin={t("sign")}
+        buttonLogout={t("logout")}
+      />
+      <Head title={t("title")}>
+        <LocaleSelect />
+      </Head>
+      <Navigation />
+      <ProfilePage
+        profileList={select.profileList}
+        fullUserInfo={select.fullUserInfo}
+      />
+    </PageLayout>
+  );
 };
 
-export default ProfilePage;
+export default memo(ProfileArticle);

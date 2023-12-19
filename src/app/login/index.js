@@ -1,46 +1,68 @@
-import React, { useState } from "react";
-import "./style.css";
-import { useNavigate } from "react-router-dom";
+import React, { memo, useCallback } from "react";
+import PageLayout from "../../components/page-layout";
+import SignControl from "../../components/sign-control";
+import Head from "../../components/head";
+import LocaleSelect from "../../containers/locale-select";
+import Navigation from "../../containers/navigation";
+import LoginPage from "../../components/login-page";
 import useTranslate from "../../hooks/use-translate";
+import useStore from "../../hooks/use-store";
+import useSelector from "../../hooks/use-selector";
+import useInit from "../../hooks/use-init";
+import { useNavigate } from "react-router-dom";
 
-const LoginPage = (props) => {
-  const [loginValue, setLoginValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
+const LoginArticle = () => {
+  const store = useStore();
   const navigate = useNavigate();
-  const { t } = useTranslate();
-
-  const postOnSubmit = async (e) => {
-    e.preventDefault();
-    await props.postUser(loginValue, passwordValue);
-    navigate("/profile");
-    props.getProfile();
+  const callbacks = {
+    postUser: useCallback(
+      (login, password) => store.actions.auth.fetchSign(login, password),
+      [store]
+    ),
+    getProfile: useCallback(() => store.actions.profile.getProfile(), [store]),
+    deleteProfile: useCallback(
+      () => store.actions.profile.deleteProfile(),
+      [store]
+    ),
   };
 
+  const { t } = useTranslate();
+
+  useInit(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/profile");
+    }
+  }, []);
+
+  const select = useSelector((state) => ({
+    profileList: state.profile.profileList,
+    errorMessage: state.auth.errorMessage,
+  }));
+
   return (
-    <div className="login-page">
-      <form className="login-page-form" onSubmit={postOnSubmit}>
-        <h2>{t("sign")}</h2>
-        <label htmlFor="input1">{t("userName")}</label>
-        <input
-          className="login-page-input"
-          type="text"
-          id="input1"
-          value={loginValue}
-          onChange={(e) => setLoginValue(e.target.value)}
-        />
-        <label htmlFor="input2">{t("password")}</label>
-        <input
-          className="login-page-input"
-          type="text"
-          id="input2"
-          value={passwordValue}
-          onChange={(e) => setPasswordValue(e.target.value)}
-        />
-        {props.errorMessage && <p>{props.errorMessage}</p>}
-        <button className="login-page-button">{t("login")}</button>
-      </form>
-    </div>
+    <PageLayout>
+      <SignControl
+        deleteProfile={callbacks.deleteProfile}
+        profileList={select.profileList}
+        buttonLogin={t("sign")}
+        buttonLogout={t("logout")}
+      />
+      <Head title={t("title")}>
+        <LocaleSelect />
+      </Head>
+      <Navigation />
+      <LoginPage
+        postUser={callbacks.postUser}
+        profileList={select.profileList}
+        getProfile={callbacks.getProfile}
+        errorMessage={select.errorMessage}
+        loginTitle={t("sign")}
+        userName={t("userName")}
+        password={t("password")}
+        loginBtn={t("login")}
+      />
+    </PageLayout>
   );
 };
 
-export default LoginPage;
+export default memo(LoginArticle);

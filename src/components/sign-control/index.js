@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.css'
 import { Link, useNavigate  } from 'react-router-dom';
-import useTranslate from "../../../src/hooks/use-translate";
 
 const SignControl = ({profileList, deleteProfile, buttonLogin, buttonLogout}) => {
     const navigate = useNavigate()

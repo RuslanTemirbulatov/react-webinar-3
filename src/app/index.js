@@ -4,10 +4,8 @@ import useSelector from "../hooks/use-selector";
 import Main from "./main";
 import Basket from "./basket";
 import Article from "./article";
-import LoginPage from "./login/index.js";
-import LoginArticle from "./login/login-article/index.js";
-import ProfilePage from "../../src/app/profile/index.js";
-import ProfileArticle from "../app/profile/profile-article/index.js";
+import LoginArticle from "./login/index.js";
+import ProfileArticle from "./profile/index.js";
 import useStore from "../hooks/use-store.js";
 import useInit from "../hooks/use-init.js";
 
